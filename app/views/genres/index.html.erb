@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1>Genres</h1>
+  <%= link_to "New Genre", new_genre_path, class: "btn btn-primary" %>
+</div>
+<ul class="list-group shadow-sm">
+  <% @genres.each do |g| %>
+    <li class="list-group-item d-flex justify-content-between">
+      <%= link_to g.name, genre_path(g) %>
+
+    <div class="ms-3 d-flex-align-items-start">
+      <div class="btn-group btn-group-sm" role="group">
+        <%= link_to "Edit", edit_genre_path(g), class: "btn btn-sm btn-outline-secondary" %>
+        <%= button_to "Delete", genre_path(g),
+      method: :delete,
+      data: { turbo_confirm: "Delete this genre?" },
+      class: "btn btn-sm btn-outline-danger" %>
+
+      </div>
+    </div> 
+    </li>
+  <% end %>
+</ul>

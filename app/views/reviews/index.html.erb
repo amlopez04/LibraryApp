@@ -1,0 +1,27 @@
+<h1>Reviews for: <%= link_to @book.title, book_path(@book) %></h1>
+<p><%= link_to "New Review", new_book_review_path(book_id: @book.id), class: "btn btn-primary mb-3" %></p>
+
+<% if @reviews.any? %>
+<ul class="list-group shadow-sm">
+  <% @reviews.each do |r| %>
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+      <div>
+        <strong><%= r.reviewer_name %></strong> — <%= r.rating %>/5
+        <div><%= simple_format r.body %></div>
+      </div>
+      <div class="ms-3 d-flex-align-items-start">
+        <div class="btn-group btn-group-sm" role="group">
+        <%= link_to "Show", review_path(r), class: "btn btn-sm btn-outline-primary" %>
+        <%= link_to "Edit", edit_review_path(r), class: "btn btn-sm btn-outline-secondary" %>
+        <%= button_to "Delete", review_path(r),
+      method: :delete,
+      data: { turbo_confirm: "Delete this review?" },
+      class: "btn btn-sm btn-outline-danger" %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+<% else %>
+  <p class="text-muted">No reviews yet.</p>
+<% end %>

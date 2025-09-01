@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1>Books</h1>
+  <%= link_to "New Book", new_book_path, class: "btn btn-primary" %>
+</div>
+
+<table class="table table-hover bg-white shadow-sm align-middle">
+  <thead class="table-light"><tr><th>Title</th><th>Author</th><th>Genre</th><th></th></tr></thead>
+  <tbody>
+    <% @books.each do |b| %>
+      <tr>
+        <td><%= link_to b.title, book_path(b) %></td>
+        <td><%= b.author.name %></td>
+        <td><%= b.genre.name %></td>
+        <td class="text-end">
+          
+      <div class="ms-3 d-flex-align-items-start">
+        <div class="btn-group btn-group-sm" role="group">
+          <%= link_to "Edit", edit_book_path(b), class: "btn btn-sm btn-outline-secondary" %>
+          <%= button_to "Delete", book_path(b),
+           method: :delete, 
+           data: { turbo_confirm: "Delete this book?" }, 
+           class: "btn btn-sm btn-outline-danger" %>
+        </div>
+      </div>
+
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

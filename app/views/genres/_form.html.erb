@@ -1,0 +1,14 @@
+<%= render "shared/errors", object: genre %>
+<%= form_with model: genre,
+              url: genre.persisted? ? genre_path(genre) : genres_path,
+              method: genre.persisted? ? :patch : :post,
+              class: "row g-3" do |f| %>
+  <div class="col-md-6">
+    <%= f.label :name, class: "form-label" %>
+    <%= f.text_field :name, class: "form-control", required: true %>
+  </div>
+  <div class="col-12">
+    <%= f.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", genre.persisted? ? genre_path(genre) : genres_path, class: "btn btn-light" %>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<h1>New Review for: <%= link_to @book.title, book_path(@book) %></h1>
+<%= form_with model: @review, url: book_reviews_path(@book), method: :post, class: "row g-3" do |f| %>
+  <div class="col-md-6">
+    <%= f.label :reviewer_name, class: "form-label" %>
+    <%= f.text_field :reviewer_name, class: "form-control", required: true %>
+  </div>
+  <div class="col-md-6">
+    <%= f.label :rating, class: "form-label" %>
+    <%= f.number_field :rating, in: 1..5, class: "form-control", required: true %>
+  </div>
+  <div class="col-12">
+    <%= f.label :body, class: "form-label" %>
+    <%= f.text_area :body, rows: 4, class: "form-control", required: true %>
+  </div>
+  <div class="col-12">
+    <%= f.submit "Create Review", class: "btn btn-primary" %>
+    <%= link_to "Cancel", book_path(@book), class: "btn btn-light" %>
+  </div>
+<% end %>

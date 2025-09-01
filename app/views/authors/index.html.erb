@@ -1,0 +1,24 @@
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h1>Authors</h1>
+  <%= link_to "New Author", new_author_path, class: "btn btn-primary" %>
+</div>
+<ul class="list-group shadow-sm">
+  <% @authors.each do |a|
+  %><li class="list-group-item d-flex justify-content-between">
+      <%= link_to a.name, author_path(a) %>
+    
+    
+    <div class="ms-3 d-flex-align-items-start">
+        <div class="btn-group btn-group-sm" role="group">
+        
+        <%= link_to "Edit", edit_author_path(a), class: "btn btn-sm btn-outline-secondary" %>
+        <%= button_to "Delete", author_path(a),
+          method: :delete,
+          data: { turbo_confirm: "Delete this author?" },
+          class: "btn btn-sm btn-outline-danger" %>
+
+      </div>
+    </div>
+    </li>
+  <% end %>
+</ul>
